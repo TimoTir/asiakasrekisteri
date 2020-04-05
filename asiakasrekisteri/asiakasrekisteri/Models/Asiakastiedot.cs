@@ -11,7 +11,8 @@ namespace asiakasrekisteri.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Asiakastiedot
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,11 @@ namespace asiakasrekisteri.Models
         {
             this.Laskutusosoite = new HashSet<Laskutusosoite>();
         }
-    
+        [Key]
         public int Asiakasnumero { get; set; }
         public string Nimi { get; set; }
         public string Yhteyshenkilö { get; set; }
+        [Display(Name = "Toimiala")]
         public Nullable<int> LuokitteluID { get; set; }
         public string Ytunnus { get; set; }
         public string Osoite { get; set; }
@@ -30,6 +32,7 @@ namespace asiakasrekisteri.Models
         public string Postitoimipaikka { get; set; }
         public string Puhelin { get; set; }
         public string Sähköposti { get; set; }
+        [Display(Name = "Eri laskutusosoite")]
         public bool EriLaskutusosoite { get; set; }
     
         public virtual Asiakasluokittelu Asiakasluokittelu { get; set; }

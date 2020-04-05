@@ -128,7 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AsiakasluokitteluController.cs" />
+    <Compile Include="Controllers\AsiakastiedotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostitoimipaikatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +223,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Asiakastiedot\Create.cshtml" />
+    <Content Include="Views\Asiakastiedot\Delete.cshtml" />
+    <Content Include="Views\Asiakastiedot\Details.cshtml" />
+    <Content Include="Views\Asiakastiedot\Edit.cshtml" />
+    <Content Include="Views\Asiakastiedot\Index.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Create.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Delete.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Details.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Edit.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Index.cshtml" />
+    <Content Include="Views\Postitoimipaikat\Create.cshtml" />
+    <Content Include="Views\Postitoimipaikat\Delete.cshtml" />
+    <Content Include="Views\Postitoimipaikat\Details.cshtml" />
+    <Content Include="Views\Postitoimipaikat\Edit.cshtml" />
+    <Content Include="Views\Postitoimipaikat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

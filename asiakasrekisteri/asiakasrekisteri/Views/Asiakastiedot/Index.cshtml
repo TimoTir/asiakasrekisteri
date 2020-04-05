@@ -1,0 +1,89 @@
+﻿@model IEnumerable<asiakasrekisteri.Models.Asiakastiedot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <button class="btn btn-default"> @Html.ActionLink("Create New", "Create")</button> |
+    <button class="btn btn-default"> @Html.ActionLink("Asiakasluokittelu", "Index", "Asiakasluokittelu")</button> |
+    <button class="btn btn-default"> @Html.ActionLink("Postitoimipaikat", "Index", "Postitoimipaikat")</button> |
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yhteyshenkilö)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ytunnus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Osoite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postitoimipaikka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Puhelin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sähköposti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EriLaskutusosoite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asiakasluokittelu.Toimiala)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nimi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Yhteyshenkilö)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ytunnus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Osoite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Postitoimipaikka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Puhelin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sähköposti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EriLaskutusosoite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asiakasluokittelu.Toimiala)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Asiakasnumero }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })
+        </td>
+    </tr>
+}
+
+</table>
