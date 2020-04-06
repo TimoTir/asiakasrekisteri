@@ -14,6 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Postitoimipaikka)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postinumero)
+        </th>
         <th></th>
     </tr>
 
@@ -23,9 +26,12 @@
             @Html.DisplayFor(modelItem => item.Postitoimipaikka)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Postinumero }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Postinumero }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Postinumero })
+            @Html.DisplayFor(modelItem => item.Postinumero)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PaikkakuntaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PaikkakuntaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PaikkakuntaID })
         </td>
     </tr>
 }

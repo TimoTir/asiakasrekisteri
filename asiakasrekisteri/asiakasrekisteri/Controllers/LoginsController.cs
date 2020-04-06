@@ -10,107 +10,107 @@ using asiakasrekisteri.Models;
 
 namespace asiakasrekisteri.Controllers
 {
-    public class AsiakasluokitteluController : Controller
+    public class LoginsController : Controller
     {
         private AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
 
-        // GET: Asiakasluokittelu
+        // GET: Logins
         public ActionResult Index()
         {
-            return View(db.Asiakasluokittelu.ToList());
+            return View(db.Logins.ToList());
         }
 
-        // GET: Asiakasluokittelu/Details/5
+        // GET: Logins/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Asiakasluokittelu asiakasluokittelu = db.Asiakasluokittelu.Find(id);
-            if (asiakasluokittelu == null)
+            Logins logins = db.Logins.Find(id);
+            if (logins == null)
             {
                 return HttpNotFound();
             }
-            return View(asiakasluokittelu);
+            return View(logins);
         }
 
-        // GET: Asiakasluokittelu/Create
+        // GET: Logins/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Asiakasluokittelu/Create
+        // POST: Logins/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LuokitteluID,Toimiala,Liitto")] Asiakasluokittelu asiakasluokittelu)
+        public ActionResult Create([Bind(Include = "LoginID,Username,Password")] Logins logins)
         {
             if (ModelState.IsValid)
             {
-                db.Asiakasluokittelu.Add(asiakasluokittelu);
+                db.Logins.Add(logins);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(asiakasluokittelu);
+            return View(logins);
         }
 
-        // GET: Asiakasluokittelu/Edit/5
+        // GET: Logins/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Asiakasluokittelu asiakasluokittelu = db.Asiakasluokittelu.Find(id);
-            if (asiakasluokittelu == null)
+            Logins logins = db.Logins.Find(id);
+            if (logins == null)
             {
                 return HttpNotFound();
             }
-            return View(asiakasluokittelu);
+            return View(logins);
         }
 
-        // POST: Asiakasluokittelu/Edit/5
+        // POST: Logins/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LuokitteluID,Toimiala,Liitto")] Asiakasluokittelu asiakasluokittelu)
+        public ActionResult Edit([Bind(Include = "LoginID,Username,Password")] Logins logins)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(asiakasluokittelu).State = EntityState.Modified;
+                db.Entry(logins).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(asiakasluokittelu);
+            return View(logins);
         }
 
-        // GET: Asiakasluokittelu/Delete/5
+        // GET: Logins/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Asiakasluokittelu asiakasluokittelu = db.Asiakasluokittelu.Find(id);
-            if (asiakasluokittelu == null)
+            Logins logins = db.Logins.Find(id);
+            if (logins == null)
             {
                 return HttpNotFound();
             }
-            return View(asiakasluokittelu);
+            return View(logins);
         }
 
-        // POST: Asiakasluokittelu/Delete/5
+        // POST: Logins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Asiakasluokittelu asiakasluokittelu = db.Asiakasluokittelu.Find(id);
-            db.Asiakasluokittelu.Remove(asiakasluokittelu);
+            Logins logins = db.Logins.Find(id);
+            db.Logins.Remove(logins);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

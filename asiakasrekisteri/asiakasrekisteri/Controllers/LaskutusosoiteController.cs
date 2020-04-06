@@ -10,107 +10,112 @@ using asiakasrekisteri.Models;
 
 namespace asiakasrekisteri.Controllers
 {
-    public class AsiakasluokitteluController : Controller
+    public class LaskutusosoiteController : Controller
     {
         private AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
 
-        // GET: Asiakasluokittelu
+        // GET: Laskutusosoite
         public ActionResult Index()
         {
-            return View(db.Asiakasluokittelu.ToList());
+            var laskutusosoite = db.Laskutusosoite.Include(l => l.Asiakastiedot);
+            return View(laskutusosoite.ToList());
         }
 
-        // GET: Asiakasluokittelu/Details/5
+        // GET: Laskutusosoite/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Asiakasluokittelu asiakasluokittelu = db.Asiakasluokittelu.Find(id);
-            if (asiakasluokittelu == null)
+            Laskutusosoite laskutusosoite = db.Laskutusosoite.Find(id);
+            if (laskutusosoite == null)
             {
                 return HttpNotFound();
             }
-            return View(asiakasluokittelu);
+            return View(laskutusosoite);
         }
 
-        // GET: Asiakasluokittelu/Create
+        // GET: Laskutusosoite/Create
         public ActionResult Create()
         {
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakastiedot, "Asiakasnumero", "Nimi");
             return View();
         }
 
-        // POST: Asiakasluokittelu/Create
+        // POST: Laskutusosoite/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LuokitteluID,Toimiala,Liitto")] Asiakasluokittelu asiakasluokittelu)
+        public ActionResult Create([Bind(Include = "LaskutustietoID,Asiakasnumero,Nimi,Ytunnus,Osoite,Postinumero,Postitoimipaikka,Sähköposti")] Laskutusosoite laskutusosoite)
         {
             if (ModelState.IsValid)
             {
-                db.Asiakasluokittelu.Add(asiakasluokittelu);
+                db.Laskutusosoite.Add(laskutusosoite);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(asiakasluokittelu);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakastiedot, "Asiakasnumero", "Nimi", laskutusosoite.Asiakasnumero);
+            return View(laskutusosoite);
         }
 
-        // GET: Asiakasluokittelu/Edit/5
+        // GET: Laskutusosoite/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Asiakasluokittelu asiakasluokittelu = db.Asiakasluokittelu.Find(id);
-            if (asiakasluokittelu == null)
+            Laskutusosoite laskutusosoite = db.Laskutusosoite.Find(id);
+            if (laskutusosoite == null)
             {
                 return HttpNotFound();
             }
-            return View(asiakasluokittelu);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakastiedot, "Asiakasnumero", "Nimi", laskutusosoite.Asiakasnumero);
+            return View(laskutusosoite);
         }
 
-        // POST: Asiakasluokittelu/Edit/5
+        // POST: Laskutusosoite/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LuokitteluID,Toimiala,Liitto")] Asiakasluokittelu asiakasluokittelu)
+        public ActionResult Edit([Bind(Include = "LaskutustietoID,Asiakasnumero,Nimi,Ytunnus,Osoite,Postinumero,Postitoimipaikka,Sähköposti")] Laskutusosoite laskutusosoite)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(asiakasluokittelu).State = EntityState.Modified;
+                db.Entry(laskutusosoite).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(asiakasluokittelu);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakastiedot, "Asiakasnumero", "Nimi", laskutusosoite.Asiakasnumero);
+            return View(laskutusosoite);
         }
 
-        // GET: Asiakasluokittelu/Delete/5
+        // GET: Laskutusosoite/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Asiakasluokittelu asiakasluokittelu = db.Asiakasluokittelu.Find(id);
-            if (asiakasluokittelu == null)
+            Laskutusosoite laskutusosoite = db.Laskutusosoite.Find(id);
+            if (laskutusosoite == null)
             {
                 return HttpNotFound();
             }
-            return View(asiakasluokittelu);
+            return View(laskutusosoite);
         }
 
-        // POST: Asiakasluokittelu/Delete/5
+        // POST: Laskutusosoite/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Asiakasluokittelu asiakasluokittelu = db.Asiakasluokittelu.Find(id);
-            db.Asiakasluokittelu.Remove(asiakasluokittelu);
+            Laskutusosoite laskutusosoite = db.Laskutusosoite.Find(id);
+            db.Laskutusosoite.Remove(laskutusosoite);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

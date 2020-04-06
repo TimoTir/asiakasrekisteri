@@ -131,6 +131,8 @@
     <Compile Include="Controllers\AsiakasluokitteluController.cs" />
     <Compile Include="Controllers\AsiakastiedotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LaskutusosoiteController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\PostitoimipaikatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,8 +183,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -233,11 +235,21 @@
     <Content Include="Views\Asiakasluokittelu\Details.cshtml" />
     <Content Include="Views\Asiakasluokittelu\Edit.cshtml" />
     <Content Include="Views\Asiakasluokittelu\Index.cshtml" />
+    <Content Include="Views\Laskutusosoite\Create.cshtml" />
+    <Content Include="Views\Laskutusosoite\Delete.cshtml" />
+    <Content Include="Views\Laskutusosoite\Details.cshtml" />
+    <Content Include="Views\Laskutusosoite\Edit.cshtml" />
+    <Content Include="Views\Laskutusosoite\Index.cshtml" />
     <Content Include="Views\Postitoimipaikat\Create.cshtml" />
     <Content Include="Views\Postitoimipaikat\Delete.cshtml" />
     <Content Include="Views\Postitoimipaikat\Details.cshtml" />
     <Content Include="Views\Postitoimipaikat\Edit.cshtml" />
     <Content Include="Views\Postitoimipaikat\Index.cshtml" />
+    <Content Include="Views\Logins\Create.cshtml" />
+    <Content Include="Views\Logins\Delete.cshtml" />
+    <Content Include="Views\Logins\Details.cshtml" />
+    <Content Include="Views\Logins\Edit.cshtml" />
+    <Content Include="Views\Logins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

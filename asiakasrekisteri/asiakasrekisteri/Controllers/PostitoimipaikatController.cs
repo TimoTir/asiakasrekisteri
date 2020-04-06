@@ -12,7 +12,7 @@ namespace asiakasrekisteri.Controllers
 {
     public class PostitoimipaikatController : Controller
     {
-        private AsiakasrekisteriEntities db = new AsiakasrekisteriEntities();
+        private AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
 
         // GET: Postitoimipaikat
         public ActionResult Index()
@@ -21,7 +21,7 @@ namespace asiakasrekisteri.Controllers
         }
 
         // GET: Postitoimipaikat/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace asiakasrekisteri.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
+        public ActionResult Create([Bind(Include = "PaikkakuntaID,Postitoimipaikka,Postinumero")] Postitoimipaikat postitoimipaikat)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace asiakasrekisteri.Controllers
         }
 
         // GET: Postitoimipaikat/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -78,7 +78,7 @@ namespace asiakasrekisteri.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
+        public ActionResult Edit([Bind(Include = "PaikkakuntaID,Postitoimipaikka,Postinumero")] Postitoimipaikat postitoimipaikat)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace asiakasrekisteri.Controllers
         }
 
         // GET: Postitoimipaikat/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace asiakasrekisteri.Controllers
         // POST: Postitoimipaikat/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Postitoimipaikat postitoimipaikat = db.Postitoimipaikat.Find(id);
             db.Postitoimipaikat.Remove(postitoimipaikat);

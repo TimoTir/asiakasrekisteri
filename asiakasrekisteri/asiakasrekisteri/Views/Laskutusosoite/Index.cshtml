@@ -1,4 +1,4 @@
-﻿@model IEnumerable<asiakasrekisteri.Models.Asiakastiedot>
+﻿@model IEnumerable<asiakasrekisteri.Models.Laskutusosoite>
 
 @{
     ViewBag.Title = "Index";
@@ -15,9 +15,6 @@
             @Html.DisplayNameFor(model => model.Nimi)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Yhteyshenkilö)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Ytunnus)
         </th>
         <th>
@@ -30,19 +27,10 @@
             @Html.DisplayNameFor(model => model.Postitoimipaikka)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Puhelin)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Sähköposti)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EriLaskutusosoite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Asiakasluokittelu.Toimiala)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)
+            @Html.DisplayNameFor(model => model.Asiakastiedot.Nimi)
         </th>
         <th></th>
     </tr>
@@ -51,9 +39,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Nimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Yhteyshenkilö)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Ytunnus)
@@ -68,24 +53,15 @@
             @Html.DisplayFor(modelItem => item.Postitoimipaikka)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Puhelin)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Sähköposti)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EriLaskutusosoite)
+            @Html.DisplayFor(modelItem => item.Asiakastiedot.Nimi)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Asiakasluokittelu.Toimiala)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Asiakasnumero }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })
+            @Html.ActionLink("Edit", "Edit", new { id=item.LaskutustietoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LaskutustietoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LaskutustietoID })
         </td>
     </tr>
 }

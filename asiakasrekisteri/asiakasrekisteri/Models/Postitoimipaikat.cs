@@ -20,8 +20,9 @@ namespace asiakasrekisteri.Models
             this.Asiakastiedot = new HashSet<Asiakastiedot>();
         }
     
-        public string Postinumero { get; set; }
+        public int PaikkakuntaID { get; set; }
         public string Postitoimipaikka { get; set; }
+        public string Postinumero { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asiakastiedot> Asiakastiedot { get; set; }

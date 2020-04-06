@@ -13,10 +13,10 @@ namespace asiakasrekisteri.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AsiakasrekisteriEntities : DbContext
+    public partial class AsiakasrekisteriEntities1 : DbContext
     {
-        public AsiakasrekisteriEntities()
-            : base("name=AsiakasrekisteriEntities")
+        public AsiakasrekisteriEntities1()
+            : base("name=AsiakasrekisteriEntities1")
         {
         }
     

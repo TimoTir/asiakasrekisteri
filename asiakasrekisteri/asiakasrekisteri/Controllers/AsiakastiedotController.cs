@@ -12,7 +12,7 @@ namespace asiakasrekisteri.Controllers
 {
     public class AsiakastiedotController : Controller
     {
-        private AsiakasrekisteriEntities db = new AsiakasrekisteriEntities();
+        private AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
 
         // GET: Asiakastiedot
         public ActionResult Index()
@@ -40,7 +40,7 @@ namespace asiakasrekisteri.Controllers
         public ActionResult Create()
         {
             ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala");
-            ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka");
+            ViewBag.PaikkakuntaID = new SelectList(db.Postitoimipaikat, "PaikkakuntaID", "Postitoimipaikka");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace asiakasrekisteri.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Asiakasnumero,Nimi,Yhteyshenkilö,LuokitteluID,Ytunnus,Osoite,Postinumero,Postitoimipaikka,Puhelin,Sähköposti,EriLaskutusosoite")] Asiakastiedot asiakastiedot)
+        public ActionResult Create([Bind(Include = "Asiakasnumero,Nimi,Yhteyshenkilö,LuokitteluID,Ytunnus,Osoite,PaikkakuntaID,Postinumero,Postitoimipaikka,Puhelin,Sähköposti,EriLaskutusosoite")] Asiakastiedot asiakastiedot)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace asiakasrekisteri.Controllers
             }
 
             ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala", asiakastiedot.LuokitteluID);
-            ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka", asiakastiedot.Postinumero);
+            ViewBag.PaikkakuntaID = new SelectList(db.Postitoimipaikat, "PaikkakuntaID", "Postitoimipaikka", asiakastiedot.PaikkakuntaID);
             return View(asiakastiedot);
         }
 
@@ -76,7 +76,7 @@ namespace asiakasrekisteri.Controllers
                 return HttpNotFound();
             }
             ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala", asiakastiedot.LuokitteluID);
-            ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka", asiakastiedot.Postinumero);
+            ViewBag.PaikkakuntaID = new SelectList(db.Postitoimipaikat, "PaikkakuntaID", "Postitoimipaikka", asiakastiedot.PaikkakuntaID);
             return View(asiakastiedot);
         }
 
@@ -85,7 +85,7 @@ namespace asiakasrekisteri.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Asiakasnumero,Nimi,Yhteyshenkilö,LuokitteluID,Ytunnus,Osoite,Postinumero,Postitoimipaikka,Puhelin,Sähköposti,EriLaskutusosoite")] Asiakastiedot asiakastiedot)
+        public ActionResult Edit([Bind(Include = "Asiakasnumero,Nimi,Yhteyshenkilö,LuokitteluID,Ytunnus,Osoite,PaikkakuntaID,Postinumero,Postitoimipaikka,Puhelin,Sähköposti,EriLaskutusosoite")] Asiakastiedot asiakastiedot)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace asiakasrekisteri.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala", asiakastiedot.LuokitteluID);
-            ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka", asiakastiedot.Postinumero);
+            ViewBag.PaikkakuntaID = new SelectList(db.Postitoimipaikat, "PaikkakuntaID", "Postitoimipaikka", asiakastiedot.PaikkakuntaID);
             return View(asiakastiedot);
         }
 

@@ -18,9 +18,17 @@
             @Html.DisplayFor(model => model.Postitoimipaikka)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Postinumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Postinumero)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Postinumero }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PaikkakuntaID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
