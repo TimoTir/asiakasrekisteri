@@ -1,93 +1,111 @@
 ﻿@model IEnumerable<asiakasrekisteri.Models.Asiakastiedot>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Indext";
 }
-
-<h2>Index</h2>
-
+    <br /><br />
+<h2>Asiakastiedot</h2>
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a type="button" class="btn btn-outline-info" href="./Asiakastiedot/Create">Lisää asiakas</a>
+
+    <a type="button" class="btn btn-outline-info" href="./Asiakasluokittelu/Create"> Lisää luokka </a>
+
+    <a type="button" class="btn btn-outline-info" href="./Laskutusosoite/Index"> Laskutukset </a>
+
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Yhteyshenkilö)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ytunnus)
-        </th>
-        <th>
+
+
+
+<table class="table-hover">
+    <thead class="alert-info">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yhteyshenkilö)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Puhelin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sähköposti)
+            </th>
+
+            @*<th>
             @Html.DisplayNameFor(model => model.Osoite)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Postinumero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postitoimipaikka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Puhelin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sähköposti)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EriLaskutusosoite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Asiakasluokittelu.Toimiala)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)
-        </th>
-        <th></th>
-    </tr>
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asiakasluokittelu.Toimiala)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ytunnus)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.EriLaskutusosoite)
+            </th>*@
+            <th></th>
+        
+            <th></th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Yhteyshenkilö)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ytunnus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Osoite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postinumero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postitoimipaikka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Puhelin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sähköposti)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EriLaskutusosoite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Asiakasluokittelu.Toimiala)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Asiakasnumero }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })
-        </td>
-    </tr>
-}
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
 
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nimi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yhteyshenkilö)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Puhelin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sähköposti)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Osoite)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Postinumero)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Asiakasluokittelu.Toimiala)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ytunnus)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.EriLaskutusosoite)
+                </td>*@
+                <td></td>
+                <td>
+                    <a type="Button" class="btn btn-outline-info" href="@Url.Action("Edit", "Asiakastiedot", new {id = item.Asiakasnumero })">Edit</a>
+                    <a type="Button" class="btn btn-outline-info" href="@Url.Action("Details", "Asiakastiedot", new {id = item.Asiakasnumero })">Details</a>
+                    <a type="Button" class="btn btn-outline-danger" href="@Url.Action("Delete", "Asiakastiedot", new {id = item.Asiakasnumero })">Delete</a>
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Asiakasnumero }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Asiakasnumero }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Asiakasnumero })*@
+                </td>
+            </tr>
+        }
+
+    </tbody>
 </table>

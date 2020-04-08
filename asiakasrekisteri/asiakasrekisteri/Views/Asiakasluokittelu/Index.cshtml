@@ -3,37 +3,48 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
+<br /><br />
+<h2>Asiakasluokka</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Lisää luokittelu", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Toimiala)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Liitto)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Toimiala)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Liitto)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LuokitteluID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LuokitteluID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LuokitteluID })
-        </td>
-    </tr>
-}
-
+<br />
+<table class="table-hover">
+    <thead class="alert-info">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Toimiala)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Liitto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model =>model.LuokitteluID)
+            </th>
+            <th></th>
+                                  
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-capitalize">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Toimiala)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Liitto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LuokitteluID)
+                </td>
+                <td >
+                    <button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.LuokitteluID })</button>           
+                    <button class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.LuokitteluID })</button>
+                    <button class="btn btn-default">@Html.ActionLink("Delete", "Delete", new { id = item.LuokitteluID })</button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

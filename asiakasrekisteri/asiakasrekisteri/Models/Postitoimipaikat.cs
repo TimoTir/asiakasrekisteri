@@ -11,7 +11,8 @@ namespace asiakasrekisteri.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Postitoimipaikat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,9 @@ namespace asiakasrekisteri.Models
         {
             this.Asiakastiedot = new HashSet<Asiakastiedot>();
         }
-    
+        [Key]
+
+        [Display(Name = " Paikkakunta")]
         public int PaikkakuntaID { get; set; }
         public string Postitoimipaikka { get; set; }
         public string Postinumero { get; set; }

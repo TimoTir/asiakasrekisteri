@@ -39,6 +39,8 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakastiedot/Create
         public ActionResult Create()
         {
+            ViewData["Liitto"] = new SelectList(db.Asiakasluokittelu,"LuokitteluID", "Liitto");
+            //ViewData["Liitto"] = new SelectList(db.Asiakasluokittelu, "Liitto");
             ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala");
             ViewBag.PaikkakuntaID = new SelectList(db.Postitoimipaikat, "PaikkakuntaID", "Postitoimipaikka");
             return View();
@@ -49,7 +51,7 @@ namespace asiakasrekisteri.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Asiakasnumero,Nimi,Yhteyshenkilö,LuokitteluID,Ytunnus,Osoite,PaikkakuntaID,Postinumero,Postitoimipaikka,Puhelin,Sähköposti,EriLaskutusosoite")] Asiakastiedot asiakastiedot)
+        public ActionResult Create([Bind(Include = "Asiakasnumero,Nimi,Yhteyshenkilö,LuokitteluID,Liitto,Ytunnus,Osoite,PaikkakuntaID,Postinumero,Postitoimipaikka,Puhelin,Sähköposti,EriLaskutusosoite")] Asiakastiedot asiakastiedot)
         {
             if (ModelState.IsValid)
             {
@@ -57,8 +59,8 @@ namespace asiakasrekisteri.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala", asiakastiedot.LuokitteluID);
+            ViewData["Liitto"] = new SelectList(db.Asiakasluokittelu, "LuokitteluID","Liitto", asiakastiedot.Asiakasluokittelu.Liitto );
+            ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala",asiakastiedot.LuokitteluID);
             ViewBag.PaikkakuntaID = new SelectList(db.Postitoimipaikat, "PaikkakuntaID", "Postitoimipaikka", asiakastiedot.PaikkakuntaID);
             return View(asiakastiedot);
         }
@@ -75,6 +77,7 @@ namespace asiakasrekisteri.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["Liitto"] = new SelectList(db.Asiakasluokittelu, "LuokitteluID","Liitto");
             ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala", asiakastiedot.LuokitteluID);
             ViewBag.PaikkakuntaID = new SelectList(db.Postitoimipaikat, "PaikkakuntaID", "Postitoimipaikka", asiakastiedot.PaikkakuntaID);
             return View(asiakastiedot);
@@ -93,6 +96,7 @@ namespace asiakasrekisteri.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewData["Liitto"] = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Liitto", asiakastiedot.Asiakasluokittelu.Liitto);
             ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala", asiakastiedot.LuokitteluID);
             ViewBag.PaikkakuntaID = new SelectList(db.Postitoimipaikat, "PaikkakuntaID", "Postitoimipaikka", asiakastiedot.PaikkakuntaID);
             return View(asiakastiedot);

@@ -11,7 +11,8 @@ namespace asiakasrekisteri.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Asiakasluokittelu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,9 @@ namespace asiakasrekisteri.Models
         {
             this.Asiakastiedot = new HashSet<Asiakastiedot>();
         }
-    
+        [Key]
+
+        
         public int LuokitteluID { get; set; }
         public string Toimiala { get; set; }
         public string Liitto { get; set; }
