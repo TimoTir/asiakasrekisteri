@@ -15,6 +15,37 @@ namespace asiakasrekisteri.Controllers
         private AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
 
         // GET: Logins
+        public ActionResult Admin()
+        {
+            return View(db.Logins.ToList());
+        }
+        [HttpPost]
+        public ActionResult Authorize(Logins LoginModel)
+        {
+            AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+            //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
+            var LoggedUser = db.Logins.SingleOrDefault(x => x.Username == LoginModel.Username && x.Password == LoginModel.Password);
+            if (LoggedUser != null)
+            {
+                ViewBag.LoginMessage = "Successfull login";
+                ViewBag.LoggedStatus = "In";
+                Session["UserName"] = LoggedUser.Username;
+                return RedirectToAction("Admin", "Logins"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
+            }
+            else
+            {
+                ViewBag.LoginMessage = "Login unsuccessfull";
+                ViewBag.LoggedStatus = "Out";
+                LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
+                return View("Login", LoginModel);
+            }
+        }
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            ViewBag.LoggedStatus = "Out";
+            return RedirectToAction("Admin", "Logins");
+        }
         public ActionResult Index()
         {
             return View(db.Logins.ToList());

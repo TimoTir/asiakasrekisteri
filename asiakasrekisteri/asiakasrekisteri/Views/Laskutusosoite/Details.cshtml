@@ -4,9 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<br />
+<br />
+
 
 <div>
+    <br />
     <h4>Laskutusosoite</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -68,7 +71,11 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LaskutustietoID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<hr />
+<div>
+    <a type="Button" class="btn btn-outline-info" href="@Url.Action("Edit", "Laskutusosoite", new {id = Model.LaskutustietoID })">Muokkaa</a>
+
+    <a type="Button" class="btn btn-outline-danger" href="@Url.Action("Delete", "Laskutusosoite", new {id = Model.LaskutustietoID })">Poista tiedot</a>
+
+    <a type="Button" class="btn btn-info" href="@Url.Action("Index", "Laskutusosoite", new {id = Model.LaskutustietoID })">Takaisin</a>
+</div>

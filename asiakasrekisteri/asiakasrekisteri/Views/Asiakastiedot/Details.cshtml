@@ -4,12 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<br />
+<br />
+
 
 <div>
-    <h4>Asiakastiedot</h4>
+    <h4>Lisätiedot</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal">    
         <dt>
             @Html.DisplayNameFor(model => model.Nimi)
         </dt>
@@ -99,8 +101,15 @@
         </dd>
 
     </dl>
+    <hr />
+    <div>
+        <a type="Button" class="btn btn-outline-info" href="@Url.Action("Edit", "Asiakastiedot", new {id = Model.Asiakasnumero })">Muokkaa tietoja</a>
+
+        <a type="Button" class="btn btn-outline-danger" href="@Url.Action("Delete", "Asiakastiedot", new {id = Model.Asiakasnumero })">Poista tiedot</a>
+
+        <a type="Button" class="btn btn-info" href="@Url.Action("Index", "Asiakastiedot", new {id = Model.Asiakasnumero })">Takaisin</a>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Asiakasnumero }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Asiakasnumero }) |*@
 </p>

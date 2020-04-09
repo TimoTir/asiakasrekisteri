@@ -3,11 +3,11 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<br />
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a type="Button" class="btn btn-outline-info" href="@Url.Action("Create", "Postitoimipaikat")">Lisää</a>
 </p>
 <table class="table table-hover">
     <thead class="alert-info">
@@ -18,6 +18,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Postinumero)
             </th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -30,10 +32,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Postinumero)
         </td>
+        <td></td>
+        <td></td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PaikkakuntaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PaikkakuntaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PaikkakuntaID })
+            <a type="Button" class="btn btn-outline-info" href="@Url.Action("Details", "Postitoimipaikat",new { id = item.PaikkakuntaID })">Lisätietoja</a>
+          
         </td>
     </tr>
 }

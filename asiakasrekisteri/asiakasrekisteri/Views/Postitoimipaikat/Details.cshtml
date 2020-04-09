@@ -28,7 +28,13 @@
 
     </dl>
 </div>
+<hr />
+<div>
+    <a type="Button" class="btn btn-outline-info" href="@Url.Action("Edit", "Postitoimipaikat",new { id = Model.PaikkakuntaID })">Muokkaa</a>
+    <a type="Button" class="btn btn-outline-danger" href="@Url.Action("Delete", "Postitoimipaikat",new { id = Model.PaikkakuntaID })">Poista tiedot</a>
+    <a type="Button" class="btn btn-info" href="@Url.Action("Index", "Postitoimipaikat",new { id = Model.PaikkakuntaID })">Takaisin</a>
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PaikkakuntaID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.PaikkakuntaID }) |
+    @Html.ActionLink("Back to List", "Index")*@
 </p>

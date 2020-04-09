@@ -3,13 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
+<br />
+<h2>Laskutukset</h2>
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a type="Button" class="btn btn-outline-info" href="@Url.Action("Create", "Laskutusosoite")">Muokkaa</a>
+
 </p>
-<table class=" table-hover">
+<table class=" table table-hover">
     <thead class="alert-info">
     <tr>
         <th>
@@ -33,6 +34,8 @@
         <th>
             @Html.DisplayNameFor(model => model.Asiakastiedot.Nimi)
         </th>
+        <th></th>
+        <th></th>
         <th></th>
     </tr>
     </thead>
@@ -61,10 +64,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Asiakastiedot.Nimi)
                 </td>
+                <td></td>
+                <td></td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.LaskutustietoID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.LaskutustietoID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.LaskutustietoID })
+                    <a type="Button" class="btn btn-info" href="@Url.Action("Details", "Laskutusosoite", new {id = item.LaskutustietoID })">Lisätietoja</a>
                 </td>
             </tr>
         }

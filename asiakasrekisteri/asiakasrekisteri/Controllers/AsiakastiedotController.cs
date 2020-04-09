@@ -15,10 +15,17 @@ namespace asiakasrekisteri.Controllers
         private AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
 
         // GET: Asiakastiedot
-        public ActionResult Index()
+        public ActionResult Index(string searching)
         {
             var asiakastiedot = db.Asiakastiedot.Include(a => a.Asiakasluokittelu).Include(a => a.Postitoimipaikat);
-            return View(asiakastiedot.ToList());
+            //return View(asiakastiedot.ToList());
+            return View(db.Asiakastiedot.Where(x => x.Asiakasluokittelu.Toimiala.Contains(searching) ||
+            x.Nimi.Contains(searching) ||
+            x.Yhteyshenkilö.Contains(searching) ||
+            x.Sähköposti.Contains(searching) ||
+            x.Puhelin.Contains(searching) ||
+            x.Postitoimipaikat.Postitoimipaikka.Contains(searching) ||
+            searching == null).ToList());
         }
 
         // GET: Asiakastiedot/Details/5

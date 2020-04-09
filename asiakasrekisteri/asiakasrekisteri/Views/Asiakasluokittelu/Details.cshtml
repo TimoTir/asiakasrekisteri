@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Asiakasluokittelu</h4>
+    <h4>Lisätiedot</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -28,7 +28,10 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LuokitteluID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<hr />
+<div>
+    <a type="Button" class="btn btn-outline-info" href="@Url.Action("Edit", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Muokkaa</a>
+    <a type="Button" class="btn btn-outline-danger" href="@Url.Action("Delete", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Poista tiedot</a>
+    <a type="Button" class="btn btn-info" href="@Url.Action("Index", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Takaisin</a>
+</div>
+

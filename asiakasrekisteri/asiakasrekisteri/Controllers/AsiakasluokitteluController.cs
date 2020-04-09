@@ -15,9 +15,13 @@ namespace asiakasrekisteri.Controllers
         private AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
 
         // GET: Asiakasluokittelu
-        public ActionResult Index()
+        public ActionResult Index(string searching)
         {
-            return View(db.Asiakasluokittelu.ToList());
+            //return View(db.Asiakasluokittelu.ToList());
+            return View(db.Asiakasluokittelu.Where(x => x.Toimiala.Contains(searching) ||
+            x.Liitto.Contains(searching) ||
+            x.Liitto.Contains(searching) ||
+            searching == null).ToList());
         }
 
         // GET: Asiakasluokittelu/Details/5
