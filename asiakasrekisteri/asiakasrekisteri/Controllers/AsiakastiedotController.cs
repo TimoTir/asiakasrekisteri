@@ -17,21 +17,50 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakastiedot
         public ActionResult Index(string searching)
         {
-            var asiakastiedot = db.Asiakastiedot.Include(a => a.Asiakasluokittelu).Include(a => a.Postitoimipaikat);
-            //return View(asiakastiedot.ToList());
-            return View(db.Asiakastiedot.Where(x => x.Asiakasluokittelu.Toimiala.Contains(searching) ||
-            x.Nimi.Contains(searching) ||
-            x.Yhteyshenkilö.Contains(searching) ||
-            x.Sähköposti.Contains(searching) ||
-            x.Puhelin.Contains(searching) ||
-            x.Postitoimipaikat.Postitoimipaikka.Contains(searching) ||
-            searching == null).ToList());
+
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            else
+            {
+                AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+                List<Asiakastiedot> model = db.Asiakastiedot.ToList();                
+                var asiakastiedot = db.Asiakastiedot.Include(a => a.Asiakasluokittelu).Include(a => a.Postitoimipaikat);
+                return View(db.Asiakastiedot.Where(x => x.Asiakasluokittelu.Toimiala.Contains(searching) ||
+                x.Nimi.Contains(searching) ||
+                x.Yhteyshenkilö.Contains(searching) ||
+                x.Sähköposti.Contains(searching) ||
+                x.Puhelin.Contains(searching) ||
+                x.Postitoimipaikat.Postitoimipaikka.Contains(searching) ||
+                searching == null).ToList());
+                //db.Dispose();
+            }
+            //var asiakastiedot = db.Asiakastiedot.Include(a => a.Asiakasluokittelu).Include(a => a.Postitoimipaikat);
+            ////return View(asiakastiedot.ToList());
+            //return View(db.Asiakastiedot.Where(x => x.Asiakasluokittelu.Toimiala.Contains(searching) ||
+            //x.Nimi.Contains(searching) ||
+            //x.Yhteyshenkilö.Contains(searching) ||
+            //x.Sähköposti.Contains(searching) ||
+            //x.Puhelin.Contains(searching) ||
+            //x.Postitoimipaikat.Postitoimipaikka.Contains(searching) ||
+            //searching == null).ToList());
         }
 
         // GET: Asiakastiedot/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            //else
+            //{
+            //    AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+            //    List<Asiakastiedot> model = db.Asiakastiedot.ToList();
+            //    db.Dispose();
+            //}
+                if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -46,6 +75,16 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakastiedot/Create
         public ActionResult Create()
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            //else
+            //{
+            //    AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+            //    List<Asiakastiedot> model = db.Asiakastiedot.ToList();
+            //    db.Dispose();
+            //}
             ViewData["Liitto"] = new SelectList(db.Asiakasluokittelu,"LuokitteluID", "Liitto");
             //ViewData["Liitto"] = new SelectList(db.Asiakasluokittelu, "Liitto");
             ViewBag.LuokitteluID = new SelectList(db.Asiakasluokittelu, "LuokitteluID", "Toimiala");
@@ -75,6 +114,16 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakastiedot/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            else
+            //{
+            //    AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+            //    List<Asiakastiedot> model = db.Asiakastiedot.ToList();
+            //    db.Dispose();
+            //}
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,6 +161,16 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakastiedot/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            //else
+            //{
+            //    AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+            //    List<Asiakastiedot> model = db.Asiakastiedot.ToList();
+            //    db.Dispose();
+            //}
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

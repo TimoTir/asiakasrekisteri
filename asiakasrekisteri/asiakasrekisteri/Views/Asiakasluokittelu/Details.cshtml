@@ -19,19 +19,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Liitto)
+            @Html.DisplayNameFor(Model => Model.Liitto)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Liitto)
+            @Html.DisplayFor(Model => Model.Liitto)
         </dd>
 
     </dl>
 </div>
 <hr />
+        
 <div>
-    <a type="Button" class="btn btn-outline-info" href="@Url.Action("Edit", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Muokkaa</a>
-    <a type="Button" class="btn btn-outline-danger" href="@Url.Action("Delete", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Poista tiedot</a>
-    <a type="Button" class="btn btn-info" href="@Url.Action("Index", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Takaisin</a>
+    <a type="Button" class="btn btn-info btn-sm" href="@Url.Action("Edit", "Asiakasluokittelu", new {id = Model.LuokitteluID })">Muokkaa</a>
+    <a type="Button" class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Poista</a>
+    <a type="Button" class="btn btn-info btn-sm" href="@Url.Action("Index", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Takaisin</a>
 </div>
 

@@ -3,9 +3,11 @@
 @{
     ViewBag.Title = "Index";
 }
-<br />
-<h2>Index</h2>
 
+<br />
+<br />
+<h1 style="font-size:50px" class="text-xl-center">Postitoimipaikat</h1>
+<br />
 <p>
     <a type="Button" class="btn btn-outline-info" href="@Url.Action("Create", "Postitoimipaikat")">Lisää</a>
 </p>
@@ -24,21 +26,22 @@
         </tr>
     </thead>
 
-@foreach (var item in Model) {
-    <tr class="text-capitalize">
-        <td>
-            @Html.DisplayFor(modelItem => item.Postitoimipaikka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postinumero)
-        </td>
-        <td></td>
-        <td></td>
-        <td>
-            <a type="Button" class="btn btn-outline-info" href="@Url.Action("Details", "Postitoimipaikat",new { id = item.PaikkakuntaID })">Lisätietoja</a>
-          
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="text-capitalize">
+            <td>
+                @Html.DisplayFor(modelItem => item.Postitoimipaikka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postinumero)
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+                <a type="Button" class="btn btn-outline-info" href="@Url.Action("Details", "Postitoimipaikat",new { id = item.PaikkakuntaID })">Lisätietoja</a>
+
+            </td>
+        </tr>
+    }
 
 </table>

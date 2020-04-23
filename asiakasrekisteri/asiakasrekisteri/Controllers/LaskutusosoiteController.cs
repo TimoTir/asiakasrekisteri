@@ -17,6 +17,10 @@ namespace asiakasrekisteri.Controllers
         // GET: Laskutusosoite
         public ActionResult Index()
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
             var laskutusosoite = db.Laskutusosoite.Include(l => l.Asiakastiedot);
             return View(laskutusosoite.ToList());
         }
@@ -24,6 +28,10 @@ namespace asiakasrekisteri.Controllers
         // GET: Laskutusosoite/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +47,10 @@ namespace asiakasrekisteri.Controllers
         // GET: Laskutusosoite/Create
         public ActionResult Create()
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
             ViewBag.Asiakasnumero = new SelectList(db.Asiakastiedot, "Asiakasnumero", "Nimi");
             return View();
         }
@@ -64,6 +76,10 @@ namespace asiakasrekisteri.Controllers
         // GET: Laskutusosoite/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,6 +113,10 @@ namespace asiakasrekisteri.Controllers
         // GET: Laskutusosoite/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

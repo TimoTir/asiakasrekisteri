@@ -15,9 +15,9 @@ namespace asiakasrekisteri.Controllers
         private AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
 
         // GET: Logins
-        public ActionResult Admin()
+        public ActionResult Login()
         {
-            return View(db.Logins.ToList());
+            return View();
         }
         [HttpPost]
         public ActionResult Authorize(Logins LoginModel)
@@ -30,7 +30,7 @@ namespace asiakasrekisteri.Controllers
                 ViewBag.LoginMessage = "Successfull login";
                 ViewBag.LoggedStatus = "In";
                 Session["UserName"] = LoggedUser.Username;
-                return RedirectToAction("Admin", "Logins"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
+                return RedirectToAction("Index", "Logins"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
             }
             else
             {
@@ -44,7 +44,7 @@ namespace asiakasrekisteri.Controllers
         {
             Session.Abandon();
             ViewBag.LoggedStatus = "Out";
-            return RedirectToAction("Admin", "Logins");
+            return RedirectToAction("Login", "Logins");
         }
         public ActionResult Index()
         {

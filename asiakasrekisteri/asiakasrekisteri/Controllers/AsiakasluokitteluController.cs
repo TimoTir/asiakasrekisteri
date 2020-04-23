@@ -17,6 +17,16 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakasluokittelu
         public ActionResult Index(string searching)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            else
+            {
+                AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+                List<Asiakasluokittelu> model = db.Asiakasluokittelu.ToList();
+                //db.Dispose();
+            }
             //return View(db.Asiakasluokittelu.ToList());
             return View(db.Asiakasluokittelu.Where(x => x.Toimiala.Contains(searching) ||
             x.Liitto.Contains(searching) ||
@@ -27,6 +37,17 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakasluokittelu/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            //else
+            //{
+            //    AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+            //    List<Asiakasluokittelu> model = db.Asiakasluokittelu.ToList();
+            //    //db.Dispose();
+                
+            //}
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -42,6 +63,16 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakasluokittelu/Create
         public ActionResult Create()
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            //else
+            //{
+            //    AsiakasrekisteriEntities1 db = new AsiakasrekisteriEntities1();
+            //    //List<Asiakasluokittelu> model = db.Asiakasluokittelu.ToList();
+            //    //db.Dispose();
+            //}
             return View();
         }
 
@@ -65,6 +96,12 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakasluokittelu/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -74,6 +111,7 @@ namespace asiakasrekisteri.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(asiakasluokittelu);
         }
 
@@ -96,6 +134,10 @@ namespace asiakasrekisteri.Controllers
         // GET: Asiakasluokittelu/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

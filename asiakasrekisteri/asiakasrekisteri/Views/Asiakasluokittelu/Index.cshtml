@@ -5,11 +5,17 @@
 }
 <br />
 <br />
-<h2>Asiakasluokka</h2>
+<h1 style="font-size:50px" class="text-xl-center">Asiakasluokittelu</h1>
+<br />
+
+<p>
+    <a type="Button" class="btn btn-info btn-sm" href="@Url.Action("Create", "Asiakasluokittelu")">Lisää luokka</a>
+</p>
+
 <form class="form-inline my-2 my-lg-0">
     <br />
-    <input class="form-control mr-sm-2" type="text" href=@Html.TextBox("searching") >
-    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    <input class="form-control mr-sm-2" type="text" href=@Html.TextBox("searching")>
+    <button class="btn btn-primary btn-sm my-2 my-sm-0" type="submit">Search</button>
 </form>
 
 @using (Html.BeginForm("Index", "Asiakasluokittelu", FormMethod.Get))
@@ -19,7 +25,7 @@
 }
 <br />
 <table class=" table table-hover">
-    <thead class="alert-dark">
+    <thead style="color:darkblue" class="alert-info">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Toimiala)
@@ -33,7 +39,7 @@
             <th></th>
             <th></th>
             <th>
-                <a type="Button" class="btn btn-info" href="@Url.Action("Create", "Asiakasluokittelu")">Lisää luokka</a>
+               
             </th>
         </tr>
     </thead>
@@ -64,8 +70,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <a type="Button" class="btn btn-info" href="@Url.Action("Details", "Asiakasluokittelu", new {id = item.LuokitteluID })">Lisätietoja</a>
-
+                        <a type="Button" class="btn btn-outline-info btn-sm" href="@Url.Action("Details", "Asiakasluokittelu", new {id = item.LuokitteluID })">Lisätietoja</a>
                     </td>
                 </tr>
             }
