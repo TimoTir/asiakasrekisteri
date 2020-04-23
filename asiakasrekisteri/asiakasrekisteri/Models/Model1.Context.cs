@@ -31,5 +31,6 @@ namespace asiakasrekisteri.Models
         public virtual DbSet<Logins> Logins { get; set; }
         public virtual DbSet<Postitoimipaikat> Postitoimipaikat { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<AccesLevels> AccesLevels { get; set; }
     }
 }

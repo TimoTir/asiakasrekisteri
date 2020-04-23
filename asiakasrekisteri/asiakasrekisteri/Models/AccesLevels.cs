@@ -12,17 +12,19 @@ namespace asiakasrekisteri.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Logins
+    public partial class AccesLevels
     {
-        public int LoginID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public short AccesslevelID { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AccesLevels()
+        {
+            this.Logins = new HashSet<Logins>();
+        }
     
-        public virtual AccesLevels AccesLevels { get; set; }
-        public string LoginErrorMessage { get; internal set; }
+        public short AccesslevelID { get; set; }
+        public string AccessName { get; set; }
+        public short ALevel { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Logins> Logins { get; set; }
     }
 }

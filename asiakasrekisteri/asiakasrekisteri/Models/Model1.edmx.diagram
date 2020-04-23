@@ -14,6 +14,8 @@
         <AssociationConnector Association="AsiakasrekisteriModel.FK_Asiakastiedot_Asiakasluokittelu" ManuallyRouted="false" />
         <AssociationConnector Association="AsiakasrekisteriModel.FK_Asiakastiedot_Postitoimipaikat" ManuallyRouted="false" />
         <AssociationConnector Association="AsiakasrekisteriModel.FK_Laskutusosoite_Asiakastiedot" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AsiakasrekisteriModel.AccesLevels" Width="1.5" PointX="6.875" PointY="5.625" />
+        <AssociationConnector Association="AsiakasrekisteriModel.FK_Logins_AccesLevels" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
