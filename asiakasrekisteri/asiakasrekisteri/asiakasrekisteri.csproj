@@ -131,6 +131,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccesLevelsController.cs" />
     <Compile Include="Controllers\AsiakasluokitteluController.cs" />
     <Compile Include="Controllers\AsiakastiedotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -363,6 +364,11 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Logins\Admin.cshtml" />
     <Content Include="Views\Logins\Login.cshtml" />
+    <Content Include="Views\AccesLevels\Create.cshtml" />
+    <Content Include="Views\AccesLevels\Delete.cshtml" />
+    <Content Include="Views\AccesLevels\Details.cshtml" />
+    <Content Include="Views\AccesLevels\Edit.cshtml" />
+    <Content Include="Views\AccesLevels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

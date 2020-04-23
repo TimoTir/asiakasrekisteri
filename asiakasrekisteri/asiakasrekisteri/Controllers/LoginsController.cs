@@ -75,6 +75,7 @@ namespace asiakasrekisteri.Controllers
         // GET: Logins/Create
         public ActionResult Create()
         {
+            ViewData["AccesslevelID"] = new SelectList(db.AccesLevels, "AccesslevelID", "Accessname");
             return View();
         }
 
@@ -83,7 +84,7 @@ namespace asiakasrekisteri.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LoginID,Username,Password")] Logins logins)
+        public ActionResult Create([Bind(Include = "LoginID,Username,Password,Name,Email,Phone,AccesslevelID")] Logins logins)
         {
             if (ModelState.IsValid)
             {

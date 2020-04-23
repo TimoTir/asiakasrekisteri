@@ -1,0 +1,39 @@
+﻿@model IEnumerable<asiakasrekisteri.Models.AccesLevels>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALevel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccessName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALevel)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AccesslevelID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AccesslevelID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AccesslevelID })
+        </td>
+    </tr>
+}
+
+</table>
