@@ -19,6 +19,7 @@ namespace asiakasrekisteri.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Authorize(Logins LoginModel)
         {
@@ -30,7 +31,7 @@ namespace asiakasrekisteri.Controllers
                 ViewBag.LoginMessage = "Successfull login";
                 ViewBag.LoggedStatus = "In";
                 Session["UserName"] = LoggedUser.Username;
-                return RedirectToAction("Index", "Logins"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
+                return RedirectToAction("Index", "Logins"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Logins/Index
             }
             else
             {
@@ -47,6 +48,11 @@ namespace asiakasrekisteri.Controllers
             return RedirectToAction("Login", "Logins");
         }
         public ActionResult Index()
+        {
+            return View(db.Logins.ToList());
+        }
+
+        public ActionResult Admin()
         {
             return View(db.Logins.ToList());
         }
