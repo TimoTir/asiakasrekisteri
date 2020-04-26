@@ -369,6 +369,8 @@
     <Content Include="Views\AccesLevels\Details.cshtml" />
     <Content Include="Views\AccesLevels\Edit.cshtml" />
     <Content Include="Views\AccesLevels\Index.cshtml" />
+    <Content Include="Views\Shared\_NavbarLoggedIn.cshtml" />
+    <Content Include="Views\Shared\_NavbarLoggedOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
