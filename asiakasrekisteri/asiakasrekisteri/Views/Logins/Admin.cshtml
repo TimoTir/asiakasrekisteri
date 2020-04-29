@@ -7,17 +7,18 @@
 <h2>Käyttäjätiedot</h2>
 <br />
 <p>
-    @Html.ActionLink("Lisää käyttäjä", "Create")
+    <a type="button" class="btn btn-info btn-sm" href="@Url.Action("Create","Logins")">Lisää Käyttäjä</a>
+
 </p>
-<table class="table-bordered">
-    <thead>
+<table class=" table table-hover  ">
+    <thead class="alert-info">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Username)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Password)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -34,12 +35,13 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Username)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Password)
-                </td>
+                </td>*@
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -50,9 +52,7 @@
                     @Html.DisplayFor(modelItem => item.Phone)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.LoginID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.LoginID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.LoginID })
+                    <a type="Button" class="btn btn-outline-info btn-sm" href="@Url.Action("Details", "Logins", new { id = item.LoginID })">Lisätietoja</a>              
                 </td>
             </tr>
         }

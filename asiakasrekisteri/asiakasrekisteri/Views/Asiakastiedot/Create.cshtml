@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Yhteyshenkilö, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Yhteyshenkilö, new { htmlAttributes = new { @class = "form-control"  } })
+                @Html.EditorFor(model => model.Yhteyshenkilö, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Yhteyshenkilö, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -79,12 +79,12 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.Postitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Postitoimipaikka, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Postitoimipaikka, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.Postitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Postitoimipaikka, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Postitoimipaikka, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Puhelin, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -114,15 +114,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-3 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-outline-success" />
+                <button class="btn btn-outline-info">@Html.ActionLink("Takaisin", "Index")</button>
             </div>
         </div>
-    </div>
+    </div>   
+
 }
 
-<div>
-    <button class="btn btn-outline-info">@Html.ActionLink("Back to List", "Index")</button>
-</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

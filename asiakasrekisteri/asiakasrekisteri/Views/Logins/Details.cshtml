@@ -26,9 +26,25 @@
             @Html.DisplayFor(model => model.Password)
         </dd>
 
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Phone)</dt>
+        <dd>@Html.DisplayFor(model => model.Phone)</dd>
+
     </dl>
 </div>
-<p>
+    <div class="form-group">
+
+        <a type="Button" class="btn btn-outline-info btn-sm" href="@Url.Action("Edit", "Logins", new { id = Model.LoginID })">Muokkaa</a>
+        <a type="Button" class="btn btn-outline-info btn-sm" href="@Url.Action("Delete", "Logins", new { id = Model.LoginID })">Poista</a>
+        <a type="Button" class="btn btn-outline-info btn-sm" href="@Url.Action("Admin", "Logins", new { id = Model.LoginID })">Takaisin</a>
+
+    </div>
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.LoginID }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

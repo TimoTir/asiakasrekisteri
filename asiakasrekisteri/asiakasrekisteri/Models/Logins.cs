@@ -11,15 +11,28 @@ namespace asiakasrekisteri.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Logins
     {
         public int LoginID { get; set; }
+        [Required]
+        [Display(Name = "Käyttäjätunnus")]
         public string Username { get; set; }
+        [Required]
+        [Display(Name = "Salasana")]
         public string Password { get; set; }
+        [Required]
+        [Display(Name = "Käyttäjätaso")]
         public short AccesslevelID { get; set; }
+        [Required]
+        [Display(Name = "Nimi")]
         public string Name { get; set; }
+        [Required]
+        [Display(Name = "Sähköposti")]
         public string Email { get; set; }
+        [Required]
+        [Display(Name = "Puh.Nro")]
         public string Phone { get; set; }
     
         public virtual AccesLevels AccesLevels { get; set; }

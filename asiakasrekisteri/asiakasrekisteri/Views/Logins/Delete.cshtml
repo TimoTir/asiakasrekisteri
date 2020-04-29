@@ -11,22 +11,22 @@
     <h4>Logins</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+        <dt>@Html.DisplayNameFor(model => model.Username)</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+        <dd>@Html.DisplayFor(model => model.Username)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+        <dt>@Html.DisplayNameFor(model => model.Password)</dt>
+        <dd>@Html.DisplayFor(model => model.Password)</dd>
 
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Phone)</dt>
+        <dd>@Html.DisplayFor(model => model.Phone)</dd>
     </dl>
 
     @using (Html.BeginForm()) {
@@ -34,7 +34,9 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <a type="Button" class="btn btn-outline-info" href="@Url.Action("Details", "Logins", new {id = Model.LoginID })">Takaisin</a>
+
+
         </div>
     }
 </div>
