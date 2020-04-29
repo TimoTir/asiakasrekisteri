@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<br />
 
 <div>
     <h4>Lisätiedot</h4>
@@ -30,9 +30,10 @@
 </div>
 <hr />
         
-<div>
-    <a type="Button" class="btn btn-info btn-sm" href="@Url.Action("Edit", "Asiakasluokittelu", new {id = Model.LuokitteluID })">Muokkaa</a>
-    <a type="Button" class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Poista</a>
-    <a type="Button" class="btn btn-info btn-sm" href="@Url.Action("Index", "Asiaksluokittelu", new {id = Model.LuokitteluID })">Takaisin</a>
-</div>
+
+    <a type="Button" class="btn btn-info btn-sm" href= @Url.Action("Edit", "Asiakasluokittelu", new {id = Model.LuokitteluID})>Muokkaa</a>
+    <a type="Button" class="btn btn-danger btn-sm" href= @Url.Action("Delete", "Asiakasluokittelu", new {id = Model.LuokitteluID})>Poista</a>
+    <a type="Button" class="btn btn-info btn-sm" href= @Url.Action("Index", "Asiakasluokittelu", new { id = Model.LuokitteluID })>Takaisin</a>
+
+
 
