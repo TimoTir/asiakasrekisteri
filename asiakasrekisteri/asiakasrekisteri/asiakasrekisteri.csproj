@@ -147,6 +147,9 @@
     <Compile Include="Models\Asiakasluokittelu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Asiakastapahtumat.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Asiakastiedot.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

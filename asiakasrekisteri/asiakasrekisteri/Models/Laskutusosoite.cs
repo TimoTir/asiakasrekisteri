@@ -15,7 +15,7 @@ namespace asiakasrekisteri.Models
     public partial class Laskutusosoite
     {
         public int LaskutustietoID { get; set; }
-        public Nullable<int> Asiakasnumero { get; set; }
+        public int Asiakasnumero { get; set; }
         public string Nimi { get; set; }
         public string Ytunnus { get; set; }
         public string Osoite { get; set; }

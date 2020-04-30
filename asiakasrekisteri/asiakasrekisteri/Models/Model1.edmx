@@ -21,6 +21,16 @@
           <Property Name="Toimiala" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Liitto" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Asiakastapahtumat">
+          <Key>
+            <PropertyRef Name="TapahtumaID" />
+          </Key>
+          <Property Name="TapahtumaID" Type="int" Nullable="false" />
+          <Property Name="Tapahtumanimi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kuvaus" Type="nvarchar(max)" />
+          <Property Name="Asiakasnumero" Type="int" />
+          <Property Name="Päivämäärä" Type="datetime" />
+        </EntityType>
         <EntityType Name="Asiakastiedot">
           <Key>
             <PropertyRef Name="Asiakasnumero" />
@@ -43,7 +53,7 @@
             <PropertyRef Name="LaskutustietoID" />
           </Key>
           <Property Name="LaskutustietoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Asiakasnumero" Type="int" />
+          <Property Name="Asiakasnumero" Type="int" Nullable="false" />
           <Property Name="Nimi" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Ytunnus" Type="nchar" MaxLength="9" />
           <Property Name="Osoite" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -81,6 +91,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK_Asiakastapahtumat_Asiakastiedot">
+          <End Role="Asiakastiedot" Type="Self.Asiakastiedot" Multiplicity="0..1" />
+          <End Role="Asiakastapahtumat" Type="Self.Asiakastapahtumat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiakastiedot">
+              <PropertyRef Name="Asiakasnumero" />
+            </Principal>
+            <Dependent Role="Asiakastapahtumat">
+              <PropertyRef Name="Asiakasnumero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Asiakastiedot_Asiakasluokittelu">
           <End Role="Asiakasluokittelu" Type="Self.Asiakasluokittelu" Multiplicity="0..1" />
           <End Role="Asiakastiedot" Type="Self.Asiakastiedot" Multiplicity="*" />
@@ -106,7 +128,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Laskutusosoite_Asiakastiedot">
-          <End Role="Asiakastiedot" Type="Self.Asiakastiedot" Multiplicity="0..1" />
+          <End Role="Asiakastiedot" Type="Self.Asiakastiedot" Multiplicity="1" />
           <End Role="Laskutusosoite" Type="Self.Laskutusosoite" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Asiakastiedot">
@@ -132,11 +154,16 @@
         <EntityContainer Name="AsiakasrekisteriModelStoreContainer">
           <EntitySet Name="AccesLevels" EntityType="Self.AccesLevels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Asiakasluokittelu" EntityType="Self.Asiakasluokittelu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asiakastapahtumat" EntityType="Self.Asiakastapahtumat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Asiakastiedot" EntityType="Self.Asiakastiedot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Laskutusosoite" EntityType="Self.Laskutusosoite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Postitoimipaikat" EntityType="Self.Postitoimipaikat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Asiakastapahtumat_Asiakastiedot" Association="Self.FK_Asiakastapahtumat_Asiakastiedot">
+            <End Role="Asiakastiedot" EntitySet="Asiakastiedot" />
+            <End Role="Asiakastapahtumat" EntitySet="Asiakastapahtumat" />
+          </AssociationSet>
           <AssociationSet Name="FK_Asiakastiedot_Asiakasluokittelu" Association="Self.FK_Asiakastiedot_Asiakasluokittelu">
             <End Role="Asiakasluokittelu" EntitySet="Asiakasluokittelu" />
             <End Role="Asiakastiedot" EntitySet="Asiakastiedot" />
@@ -185,21 +212,9 @@
           <Property Name="EriLaskutusosoite" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Asiakasluokittelu" Relationship="Self.FK_Asiakastiedot_Asiakasluokittelu" FromRole="Asiakastiedot" ToRole="Asiakasluokittelu" />
           <NavigationProperty Name="Postitoimipaikat" Relationship="Self.FK_Asiakastiedot_Postitoimipaikat" FromRole="Asiakastiedot" ToRole="Postitoimipaikat" />
-          <NavigationProperty Name="Laskutusosoite" Relationship="Self.FK_Laskutusosoite_Asiakastiedot" FromRole="Asiakastiedot" ToRole="Laskutusosoite" />
-        </EntityType>
-        <EntityType Name="Laskutusosoite">
-          <Key>
-            <PropertyRef Name="LaskutustietoID" />
-          </Key>
-          <Property Name="LaskutustietoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Asiakasnumero" Type="Int32" />
-          <Property Name="Nimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Ytunnus" Type="String" MaxLength="9" FixedLength="true" Unicode="true" />
-          <Property Name="Osoite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Postinumero" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Postitoimipaikka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Sähköposti" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Asiakastiedot" Relationship="Self.FK_Laskutusosoite_Asiakastiedot" FromRole="Laskutusosoite" ToRole="Asiakastiedot" />
+          <NavigationProperty Name="Laskutusosoite" Relationship="AsiakasrekisteriModel.FK_Asiakastapahtumat_Asiakastiedot" FromRole="Asiakastiedot" ToRole="Asiakastapahtumat" />
+          <NavigationProperty Name="Asiakastapahtumat" Relationship="AsiakasrekisteriModel.FK_Asiakastapahtumat_Asiakastiedot" FromRole="Asiakastiedot" ToRole="Asiakastapahtumat" />
+          <NavigationProperty Name="Laskutusosoite1" Relationship="AsiakasrekisteriModel.FK_Laskutusosoite_Asiakastiedot" FromRole="Asiakastiedot" ToRole="Laskutusosoite" />
         </EntityType>
         <EntityType Name="Logins">
           <Key>
@@ -257,22 +272,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Laskutusosoite_Asiakastiedot">
-          <End Role="Asiakastiedot" Type="Self.Asiakastiedot" Multiplicity="0..1" />
-          <End Role="Laskutusosoite" Type="Self.Laskutusosoite" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Asiakastiedot">
-              <PropertyRef Name="Asiakasnumero" />
-            </Principal>
-            <Dependent Role="Laskutusosoite">
-              <PropertyRef Name="Asiakasnumero" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="AsiakasrekisteriEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Asiakasluokittelu" EntityType="Self.Asiakasluokittelu" />
           <EntitySet Name="Asiakastiedot" EntityType="Self.Asiakastiedot" />
-          <EntitySet Name="Laskutusosoite" EntityType="Self.Laskutusosoite" />
           <EntitySet Name="Logins" EntityType="Self.Logins" />
           <EntitySet Name="Postitoimipaikat" EntityType="Self.Postitoimipaikat" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -284,14 +286,20 @@
             <End Role="Postitoimipaikat" EntitySet="Postitoimipaikat" />
             <End Role="Asiakastiedot" EntitySet="Asiakastiedot" />
           </AssociationSet>
-          <AssociationSet Name="FK_Laskutusosoite_Asiakastiedot" Association="Self.FK_Laskutusosoite_Asiakastiedot">
-            <End Role="Asiakastiedot" EntitySet="Asiakastiedot" />
-            <End Role="Laskutusosoite" EntitySet="Laskutusosoite" />
-          </AssociationSet>
           <EntitySet Name="AccesLevels" EntityType="AsiakasrekisteriModel.AccesLevels" />
           <AssociationSet Name="FK_Logins_AccesLevels" Association="AsiakasrekisteriModel.FK_Logins_AccesLevels">
             <End Role="AccesLevels" EntitySet="AccesLevels" />
             <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
+          <EntitySet Name="Asiakastapahtumat" EntityType="AsiakasrekisteriModel.Asiakastapahtumat" />
+          <AssociationSet Name="FK_Asiakastapahtumat_Asiakastiedot" Association="AsiakasrekisteriModel.FK_Asiakastapahtumat_Asiakastiedot">
+            <End Role="Asiakastiedot" EntitySet="Asiakastiedot" />
+            <End Role="Asiakastapahtumat" EntitySet="Asiakastapahtumat" />
+          </AssociationSet>
+          <EntitySet Name="Laskutusosoite" EntityType="AsiakasrekisteriModel.Laskutusosoite" />
+          <AssociationSet Name="FK_Laskutusosoite_Asiakastiedot" Association="AsiakasrekisteriModel.FK_Laskutusosoite_Asiakastiedot">
+            <End Role="Asiakastiedot" EntitySet="Asiakastiedot" />
+            <End Role="Laskutusosoite" EntitySet="Laskutusosoite" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AccesLevels">
@@ -312,6 +320,55 @@
             </Principal>
             <Dependent Role="Logins">
               <PropertyRef Name="AccesslevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Asiakastapahtumat">
+          <Key>
+            <PropertyRef Name="TapahtumaID" />
+          </Key>
+          <Property Name="TapahtumaID" Type="Int32" Nullable="false" />
+          <Property Name="Tapahtumanimi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kuvaus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Asiakasnumero" Type="Int32" />
+          <Property Name="Päivämäärä" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Asiakastiedot" Relationship="AsiakasrekisteriModel.FK_Asiakastapahtumat_Asiakastiedot" FromRole="Asiakastapahtumat" ToRole="Asiakastiedot" />
+        </EntityType>
+        <Association Name="FK_Asiakastapahtumat_Asiakastiedot">
+          <End Type="AsiakasrekisteriModel.Asiakastiedot" Role="Asiakastiedot" Multiplicity="0..1" />
+          <End Type="AsiakasrekisteriModel.Asiakastapahtumat" Role="Asiakastapahtumat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiakastiedot">
+              <PropertyRef Name="Asiakasnumero" />
+            </Principal>
+            <Dependent Role="Asiakastapahtumat">
+              <PropertyRef Name="Asiakasnumero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Laskutusosoite">
+          <Key>
+            <PropertyRef Name="LaskutustietoID" />
+          </Key>
+          <Property Name="LaskutustietoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Asiakasnumero" Type="Int32" Nullable="false" />
+          <Property Name="Nimi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ytunnus" Type="String" MaxLength="9" FixedLength="true" Unicode="true" />
+          <Property Name="Osoite" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Postinumero" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="Postitoimipaikka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sähköposti" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Asiakastiedot" Relationship="AsiakasrekisteriModel.FK_Laskutusosoite_Asiakastiedot" FromRole="Laskutusosoite" ToRole="Asiakastiedot" />
+        </EntityType>
+        <Association Name="FK_Laskutusosoite_Asiakastiedot">
+          <End Type="AsiakasrekisteriModel.Asiakastiedot" Role="Asiakastiedot" Multiplicity="1" />
+          <End Type="AsiakasrekisteriModel.Laskutusosoite" Role="Laskutusosoite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiakastiedot">
+              <PropertyRef Name="Asiakasnumero" />
+            </Principal>
+            <Dependent Role="Laskutusosoite">
+              <PropertyRef Name="Asiakasnumero" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -345,20 +402,6 @@
                 <ScalarProperty Name="Puhelin" ColumnName="Puhelin" />
                 <ScalarProperty Name="Sähköposti" ColumnName="Sähköposti" />
                 <ScalarProperty Name="EriLaskutusosoite" ColumnName="EriLaskutusosoite" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Laskutusosoite">
-            <EntityTypeMapping TypeName="AsiakasrekisteriModel.Laskutusosoite">
-              <MappingFragment StoreEntitySet="Laskutusosoite">
-                <ScalarProperty Name="LaskutustietoID" ColumnName="LaskutustietoID" />
-                <ScalarProperty Name="Asiakasnumero" ColumnName="Asiakasnumero" />
-                <ScalarProperty Name="Nimi" ColumnName="Nimi" />
-                <ScalarProperty Name="Ytunnus" ColumnName="Ytunnus" />
-                <ScalarProperty Name="Osoite" ColumnName="Osoite" />
-                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
-                <ScalarProperty Name="Postitoimipaikka" ColumnName="Postitoimipaikka" />
-                <ScalarProperty Name="Sähköposti" ColumnName="Sähköposti" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -401,6 +444,31 @@
                 <ScalarProperty Name="ALevel" ColumnName="ALevel" />
                 <ScalarProperty Name="AccessName" ColumnName="AccessName" />
                 <ScalarProperty Name="AccesslevelID" ColumnName="AccesslevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asiakastapahtumat">
+            <EntityTypeMapping TypeName="AsiakasrekisteriModel.Asiakastapahtumat">
+              <MappingFragment StoreEntitySet="Asiakastapahtumat">
+                <ScalarProperty Name="Päivämäärä" ColumnName="Päivämäärä" />
+                <ScalarProperty Name="Asiakasnumero" ColumnName="Asiakasnumero" />
+                <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
+                <ScalarProperty Name="Tapahtumanimi" ColumnName="Tapahtumanimi" />
+                <ScalarProperty Name="TapahtumaID" ColumnName="TapahtumaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Laskutusosoite">
+            <EntityTypeMapping TypeName="AsiakasrekisteriModel.Laskutusosoite">
+              <MappingFragment StoreEntitySet="Laskutusosoite">
+                <ScalarProperty Name="Sähköposti" ColumnName="Sähköposti" />
+                <ScalarProperty Name="Postitoimipaikka" ColumnName="Postitoimipaikka" />
+                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
+                <ScalarProperty Name="Osoite" ColumnName="Osoite" />
+                <ScalarProperty Name="Ytunnus" ColumnName="Ytunnus" />
+                <ScalarProperty Name="Nimi" ColumnName="Nimi" />
+                <ScalarProperty Name="Asiakasnumero" ColumnName="Asiakasnumero" />
+                <ScalarProperty Name="LaskutustietoID" ColumnName="LaskutustietoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

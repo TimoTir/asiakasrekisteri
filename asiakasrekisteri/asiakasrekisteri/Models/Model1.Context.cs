@@ -27,10 +27,11 @@ namespace asiakasrekisteri.Models
     
         public virtual DbSet<Asiakasluokittelu> Asiakasluokittelu { get; set; }
         public virtual DbSet<Asiakastiedot> Asiakastiedot { get; set; }
-        public virtual DbSet<Laskutusosoite> Laskutusosoite { get; set; }
         public virtual DbSet<Logins> Logins { get; set; }
         public virtual DbSet<Postitoimipaikat> Postitoimipaikat { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<AccesLevels> AccesLevels { get; set; }
+        public virtual DbSet<Asiakastapahtumat> Asiakastapahtumat { get; set; }
+        public virtual DbSet<Laskutusosoite> Laskutusosoite { get; set; }
     }
 }

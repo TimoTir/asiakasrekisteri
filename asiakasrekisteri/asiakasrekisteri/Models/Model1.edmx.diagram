@@ -7,15 +7,17 @@
       <Diagram DiagramId="981219ee897c4f73a3b91753ff14c546" Name="Diagram1">
         <EntityTypeShape EntityType="AsiakasrekisteriModel.Asiakasluokittelu" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiakasrekisteriModel.Asiakastiedot" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AsiakasrekisteriModel.Laskutusosoite" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiakasrekisteriModel.Logins" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiakasrekisteriModel.Postitoimipaikat" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AsiakasrekisteriModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="AsiakasrekisteriModel.FK_Asiakastiedot_Asiakasluokittelu" ManuallyRouted="false" />
         <AssociationConnector Association="AsiakasrekisteriModel.FK_Asiakastiedot_Postitoimipaikat" ManuallyRouted="false" />
-        <AssociationConnector Association="AsiakasrekisteriModel.FK_Laskutusosoite_Asiakastiedot" ManuallyRouted="false" />
         <EntityTypeShape EntityType="AsiakasrekisteriModel.AccesLevels" Width="1.5" PointX="6.875" PointY="5.625" />
         <AssociationConnector Association="AsiakasrekisteriModel.FK_Logins_AccesLevels" />
+        <EntityTypeShape EntityType="AsiakasrekisteriModel.Asiakastapahtumat" Width="1.5" PointX="5.25" PointY="9" />
+        <AssociationConnector Association="AsiakasrekisteriModel.FK_Asiakastapahtumat_Asiakastiedot" />
+        <EntityTypeShape EntityType="AsiakasrekisteriModel.Laskutusosoite" Width="1.5" PointX="5.25" PointY="1.75" />
+        <AssociationConnector Association="AsiakasrekisteriModel.FK_Laskutusosoite_Asiakastiedot" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

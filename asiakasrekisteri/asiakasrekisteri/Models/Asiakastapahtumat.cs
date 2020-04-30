@@ -12,17 +12,14 @@ namespace asiakasrekisteri.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Logins
+    public partial class Asiakastapahtumat
     {
-        public int LoginID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public short AccesslevelID { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public int TapahtumaID { get; set; }
+        public string Tapahtumanimi { get; set; }
+        public string Kuvaus { get; set; }
+        public Nullable<int> Asiakasnumero { get; set; }
+        public Nullable<System.DateTime> Päivämäärä { get; set; }
     
-        public virtual AccesLevels AccesLevels { get; set; }
-        public string LoginErrorMessage { get; internal set; }
+        public virtual Asiakastiedot Asiakastiedot { get; set; }
     }
 }

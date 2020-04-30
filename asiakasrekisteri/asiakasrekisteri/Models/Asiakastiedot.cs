@@ -17,7 +17,9 @@ namespace asiakasrekisteri.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Asiakastiedot()
         {
-            this.Laskutusosoite = new HashSet<Laskutusosoite>();
+            this.Laskutusosoite = new HashSet<Asiakastapahtumat>();
+            this.Asiakastapahtumat = new HashSet<Asiakastapahtumat>();
+            this.Laskutusosoite1 = new HashSet<Laskutusosoite>();
         }
     
         public int Asiakasnumero { get; set; }
@@ -36,6 +38,10 @@ namespace asiakasrekisteri.Models
         public virtual Asiakasluokittelu Asiakasluokittelu { get; set; }
         public virtual Postitoimipaikat Postitoimipaikat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Laskutusosoite> Laskutusosoite { get; set; }
+        public virtual ICollection<Asiakastapahtumat> Laskutusosoite { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Asiakastapahtumat> Asiakastapahtumat { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Laskutusosoite> Laskutusosoite1 { get; set; }
     }
 }
